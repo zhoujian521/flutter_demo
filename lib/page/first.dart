@@ -2,21 +2,23 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/page/saved.dart';
 
-class RandomWords extends StatefulWidget {
+class FirstPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new _RandomWordsState();
+    return new _FirstPageState();
   }
 }
 
-class _RandomWordsState extends State<RandomWords> {
+class _FirstPageState extends State<FirstPage> {
   final _suggestions = <WordPair>[];
   final _saved = new Set<WordPair>();
   final _biggerFont = const TextStyle(fontSize: 18.0);
 
   void _pushSaved(BuildContext context) {
     Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
-      return new SavedPage(saved: _saved,);
+      return new SavedPage(
+        saved: _saved,
+      );
     }));
   }
 
