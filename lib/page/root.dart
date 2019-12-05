@@ -11,7 +11,7 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  int _currentIndex = 0;
+  int _currentIndex = 2;
   void _onTapIndex(int index) {
     setState(() {
       _currentIndex = index;

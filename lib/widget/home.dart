@@ -16,7 +16,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> children = const <Widget>[];
   @override
   Widget build(BuildContext context) {
     return new IndexedStack(
