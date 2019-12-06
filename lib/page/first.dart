@@ -61,6 +61,10 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+        leading: new IconButton(
+          icon: new Icon(Icons.accessibility),
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
         title: new Text('Startup Name Generator'),
         actions: <Widget>[
           new IconButton(
