@@ -23,7 +23,7 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     super.initState();
-    debugPaintSizeEnabled = true;
+    // debugPaintSizeEnabled = true;
   }
 
   @override

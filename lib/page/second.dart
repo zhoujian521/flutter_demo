@@ -11,6 +11,9 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
+  final TextEditingController _controller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -31,8 +34,24 @@ class _SecondPageState extends State<SecondPage> {
     );
   }
 
+  void _submit(BuildContext context, String email) {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      showDialog(
+          context: context,
+          builder: (context) {
+            return new AlertDialog(
+              title: Text('Alert'),
+              content: Text('Email: $email'),
+            );
+          });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    String _email;
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('second'),
@@ -44,15 +63,56 @@ class _SecondPageState extends State<SecondPage> {
         ],
       ),
       body: new Container(
+          child: new Center(
         child: Column(
           children: <Widget>[
             new InkWell(
               child: new Text('Increment Counter'),
               onTap: _incrementCounter,
-            )
+            ),
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                  hintText: 'Type something', labelText: "Text Field "),
+            ),
+            RaisedButton(
+              child: Text('Submit'),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Alert'),
+                      content: Text('You typed ${_controller.text}'),
+                    );
+                  },
+                );
+              },
+            ),
+            new Form(
+              key: _formKey,
+              child: new Column(
+                children: <Widget>[
+                  new TextFormField(
+                    validator: (value) {
+                      return !value.contains('@') ? 'Not a valid email.' : null;
+                    },
+                    onSaved: (val) => _email = val,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your email',
+                      labelText: 'Email',
+                    ),
+                  ),
+                  new RaisedButton(
+                    child: new Text('Login'),
+                    onPressed: () => _submit(context, _email),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-      ),
+      )),
     );
   }
 }
