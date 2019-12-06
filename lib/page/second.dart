@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/page/other.dart';
-// import 'package:flutter_demo/widget/my_canvas.dart';
+import 'package:flutter_demo/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SecondPage extends StatefulWidget {
@@ -52,6 +52,7 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     String _email;
+    print(Utils.getPlatform(context));
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('second'),
